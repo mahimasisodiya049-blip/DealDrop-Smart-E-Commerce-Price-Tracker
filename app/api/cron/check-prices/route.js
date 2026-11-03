@@ -2,6 +2,11 @@ import { NextResponse } from "next/server";
 import { createClient } from "@supabase/supabase-js";
 import { scrapeProduct } from "@/lib/firecrawl";
 import { sendPriceDropAlert } from "@/lib/email";
+import { Resend } from "resend";
+
+const resend = new Resend(
+  process.env.RESEND_API_KEY || "re_dummy_key_for_build"
+);
 
 export async function POST(request) {
   try {
